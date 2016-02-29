@@ -18,9 +18,9 @@ npm start
 
 Now you can go to http://localhost:3000/
 
-Allows adding and removing messages
-Shows if in sync or disconnected
-Shows log of events/errors from PouchDB
+- Allows adding and removing messages
+- Shows if in sync or disconnected
+- Shows log of events/errors from PouchDB
 
 
 
