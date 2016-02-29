@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PouchDB test</title>
+    <link href="./css/index.css" rel="stylesheet" type="text/css">
+    <script src="./js/pouchdb.js"></script>
+    <script src="./js/app.js"></script>
+</head>
+<body>
+<div class="clear">
+    <form class="add left" action="#">
+        <input name="nick" placeholder="nick">
+        <input name="message" placeholder="message">
+        <button id="add">post</button>
+    </form>
+    <div id="connection" class="sync left">disconnected</div>
+</div>
+
+<ul class="chat" id="chat"></ul>
+<div class="right">
+    <button id="clear">clear</button>
+    Log:
+    <ul id="log" class="log">
+    </ul>
+</div>
+
+
+</body>
+</html>

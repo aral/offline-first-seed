@@ -1,0 +1,20 @@
+.chat .row span {
+    margin-right: 10px;
+}
+
+.chat, .right {
+    float: left;
+    width: 40%;
+}
+
+.left {
+    float: left;
+}
+
+.sync {
+    padding: 5px;
+}
+
+.clear {
+    overflow: auto;
+}
