@@ -11,7 +11,7 @@ db.info().then(function (info) {
 });
 
 process.on('uncaughtException', function (err) {
-    console.log(error, err);
+    console.log(err);
 });
 
 db.changes({
