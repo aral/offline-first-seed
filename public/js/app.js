@@ -1,6 +1,7 @@
 window.onload = function () {
     var errors;
     var connection;
+    var offline;
     var db = initDB();
     var button;
     var data;
@@ -16,11 +17,19 @@ window.onload = function () {
             navigator.serviceWorker.register('/serviceWorker.js').then(function (registration) {
                 // Registration was successful
                 console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                setOfflineStatus('ready');
             }).catch(function (err) {
                 // registration failed :(
+                setOfflineStatus('failed');
                 console.log('ServiceWorker registration failed: ', err);
             });
+        } else {
+            setOfflineStatus('unsupported');
         }
+    }
+
+    function setOfflineStatus(status) {
+        offline.innerHTML = 'offline: ' + status;
     }
 
     function appendError(message) {
@@ -98,6 +107,7 @@ window.onload = function () {
     function initUI() {
         errors = document.getElementById('log');
         connection = document.getElementById('connection');
+        offline = document.getElementById('offline');
         button = document.getElementById('add');
         data = document.getElementById('chat');
         button.addEventListener('click', addMessage);
