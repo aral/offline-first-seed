@@ -3,6 +3,7 @@ Minimalistic JavaScript offline first application seed using PouchDB and Service
 
 Uses Express/Node for server. Runs PouchDB both on server and client to allow working offline and sync when online
 Uses ServiceWorker to allow running page/app while offline
+Uses MaterializeCSS for styling
 
 # Usage
 
@@ -21,6 +22,9 @@ Now you can go to http://localhost:3000/
 - Allows adding and removing messages
 - Shows if in sync or disconnected
 - Shows log of events/errors from PouchDB
+
+![alt tag](https://raw.githubusercontent.com/wonderwhy-er/offline-first-seed/master/screen.png)
+
 
 
 
