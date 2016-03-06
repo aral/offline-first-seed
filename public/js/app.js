@@ -29,11 +29,17 @@ window.onload = function () {
     }
 
     function setOfflineStatus(status) {
+        offline.classList.remove('blue', 'red', 'green');
+        if (status == 'ready') {
+            offline.classList.add('green');
+        } else {
+            offline.classList.add('red');
+        }
         offline.innerHTML = 'offline: ' + status;
     }
 
     function appendError(message) {
-        errors.innerHTML += "<li>" + message + "</li>";
+        errors.innerHTML += "<li class='collection-item'>" + message + "</li>";
     }
 
     function log() {
@@ -60,7 +66,7 @@ window.onload = function () {
         return db;
     }
 
-    var syncState = 'disconnected';
+    var syncState = 'offline';
 
     function connectRemote(db) {
         var remoteDB = new PouchDB('http://localhost:3000/db/chat');
@@ -69,7 +75,7 @@ window.onload = function () {
             retry: true,
             back_off_function: function (lastTimeout) {
                 log('backoff', arguments);
-                changeState('disconnected');
+                changeState('offline');
                 return lastTimeout == 0 ? 100 : Math.min(lastTimeout * 2, 1000);
             }
         }).on('change', function (change) {
@@ -100,6 +106,14 @@ window.onload = function () {
     }
 
     function changeState(state) {
+        connection.classList.remove('blue', 'red', 'green');
+        if (state == 'syncing') {
+            connection.classList.add('blue');
+        } else if (state == 'in sync') {
+            connection.classList.add('green');
+        } else {
+            connection.classList.add('red');
+        }
         syncState = state;
         connection.innerHTML = state;
     }
@@ -141,8 +155,18 @@ window.onload = function () {
         return data;
     }
 
+    function formatTime(time) {
+        var date = new Date(time);
+        return date.toLocaleString();
+    }
+
     function createRow(row) {
-        return "<button>remove</button><span><b> " + row.nick + ":</b> " + row.message;
+        return '<div class="circle blue darken-4 white-text">' +
+            '<div class="valign-wrapper full-h"><div class="valign center-align full-w">' + row.nick + '</div></div>' +
+            '</div>' +
+            '<p class="grey-text comment-time">' + formatTime(row.time) + '</p>' +
+            '<span class="title">' + row.message + '</span>' +
+            '<a href="#!" class="button-delete secondary-content waves-effect waves-light"><i class="material-icons">delete</i></a>';
     }
 
     function removeRow(row) {
@@ -157,14 +181,14 @@ window.onload = function () {
             rows[row._id].innerHTML = createRow(row);
         } else {
             var div = document.createElement('div');
-            div.innerHTML = "<li class='row'>" +
+            div.innerHTML = "<li class='collection-item avatar'>" +
                 createRow(row) +
                 "</li>";
             var rowElement = div.firstChild;
             data.appendChild(rowElement);
             rows[row._id] = rowElement;
         }
-        rows[row._id].getElementsByTagName('button')[0].addEventListener('click', function () {
+        rows[row._id].getElementsByClassName('button-delete')[0].addEventListener('click', function () {
             db.remove(row._id, row._rev);
         });
     }

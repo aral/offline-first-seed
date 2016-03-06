@@ -2,30 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PouchDB test</title>
+    <title>Offline first comments seed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link href="./css/index.css" rel="stylesheet" type="text/css">
-    <script src="./js/pouchdb.js"></script>
-    <script src="./js/app.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-<div class="clear">
-    <form class="add left" action="#">
-        <input name="nick" placeholder="nick">
-        <input name="message" placeholder="message">
-        <button id="add">post</button>
-    </form>
-    <div id="connection" class="sync left">disconnected</div>
-    <div id="offline" class="left offline">offline: installing</div>
+<div class="container">
+    <nav>
+        <div class="nav-wrapper blue darken-4">
+            <a href="#" class="brand-logo left">Offline first comments</a>
+            <ul class="right">
+                <li>
+                    <div id="connection" class="red waves-effect waves-light btn">disconnected</div>
+                </li>
+                <li>
+                    <div id="offline" class="blue waves-effect waves-light btn">offline: installing</div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col s6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Comments</span>
+                    <ul class="chat collection" id="chat"></ul>
+                </div>
+                <div class="card-action">
+                    <form class="message-form" action="#">
+                        <div class="input-field col s3">
+                            <input id="nick" name="nick" type="text" class="validate">
+                            <label for="nick">Nick</label>
+                        </div>
+                        <div class="input-field col s5">
+                            <input id="message" name="message" type="text" class="validate">
+                            <label for="message">Message</label>
+                        </div>
+                        <div class="col s3 valign-wrapper full-h">
+                            <button id="add" class="waves-effect waves-light btn">post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col s6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Log:</span>
+                    <button id="clear" class="waves-effect waves-light btn right">clear</button>
+                    <ul id="log" class="collection log">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="right">
+
+    </div>
 </div>
 
-<ul class="chat" id="chat"></ul>
-<div class="right">
-    <button id="clear">clear</button>
-    Log:
-    <ul id="log" class="log">
-    </ul>
-</div>
 
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src="./js/pouchdb.js"></script>
+<script src="./js/app.js"></script>
 </body>
 </html>

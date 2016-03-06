@@ -1,20 +1,31 @@
-.chat .row span {
-    margin-right: 10px;
+nav .brand-logo {
+    padding-left: 10px;
 }
 
-.chat, .right {
-    float: left;
-    width: 40%;
+nav ul {
+    margin-right: 5px;
 }
 
-.left {
-    float: left;
+nav .btn {
+    margin-right: 5px;
 }
 
-.sync, .offline {
-    padding: 5px;
+.message-form {
+    height: 76px;
 }
 
-.clear {
-    overflow: auto;
+.full-h {
+    height: 100%;
+}
+
+.full-w {
+    width: 100%;
+}
+
+.log {
+    overflow-wrap: break-word;
+}
+
+.comment-time {
+    font-size: 0.8em;
 }
