@@ -1,0 +1,7 @@
+_replicator
+_users
+node_modules
+pouch__all_dbs__
+chat
+config.json
+log.txt
