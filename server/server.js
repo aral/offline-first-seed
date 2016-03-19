@@ -13,7 +13,7 @@ db.info().then(function (info) {
 process.on('uncaughtException', function (err) {
     console.log(err);
 });
-
+db.setMaxListeners(10);
 db.changes({
     since: 'now',
     live: true,
